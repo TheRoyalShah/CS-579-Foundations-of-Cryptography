@@ -1,0 +1,67 @@
+CS579: Foundations of Cryptography (Spring 2019)
+Homework #1
+Instructor: Nikos Triandopoulos
+April 3, 2019
+Instructions
+Please carefully read the following guidelines on how to complete and submit your solutions.
+1. The homework is due on Sunday, April 14, 2019, at 11:59pm. Late submissions are
+accepted subject to the policy specied in the course syllabus. Starting early always helps!
+2. Solutions are accepted only via Canvas, where your answers should be typed (preferably using
+LATEX) and submitted as a .pdf le.
+3. You are bound by the Stevens Honor System. Collaboration is not allowed for this homework.
+You may use any sources related to course materials, but information from external sources
+must be properly cited. Your submission acknowledges that you have abided by this policy.
+4. This assignment provides a 10% extra credit opportunity!
+1
+Figure 1: A substitution-cipher ciphertext c.
+Figure 2: Histogram of English letters.
+Problem 1 (40%)
+(1) Provide a formal denition for the mono-alphabetic substitution cipher, or simply substitution
+cipher, by describing its message space M and the algorithms Gen, Enc and Dec.
+(2) Figure 1 depicts a ciphertext c that has been produced by a substitution cipher. Use the
+histogram in Figure 2 to successfully decrypt c to the corresponding plaintext m. What is m?
+(3) Show that the substitution cipher is trivial to break when the adversary launches a chosen-
+plaintext attack. How much chosen plaintext is needed to recover the entire secret key? What is
+the shortest chosen single-message plaintext that you can nd, which is a valid English message
+and would successfully recover the key?
+(4) Under which conditions, if any, and why, is the substitution cipher perfectly secret?
+Problem 2 (20%)
+(1) Consider the extension of the One-time Pad cipher, where a ciphertext c is possibly longer than
+the plaintext m (and the key k) by one bit, namely, by having algorithm Enc append to m k a 0
+or 1, with probability 0:65 or 0:3, respectively. Is this extension a perfectly secret cipher and why?
+(2) Based on your answer in the previous question, prove or refute the following statement:
+An encryption scheme with message spaceMis perfectly secret if and only if, for every
+probability distribution DM over M and every c0; c1 2 C, we have that:
+Pr[C = c0] = Pr[C = c1] :
+2
+Problem 3 (20%)
+(1) Show that if 1(n) is a negligible function, then for any positive polynomial p(), the function
+2(n) = p(n)  1(n) is also negligible. What does this imply for an attacker that attempts to break
+a symmetric cipher by guessing its n-bit secret key k|which is selected by algorithm Gen uniformly
+(at random) from all possible keys?
+(2) Is (n) negligible, and why, if (a) (n) = n105
+2n1=2 or (b) (n) = n􀀀510
+105n105 .
+Problem 4 (30%)
+Consider an encryption scheme  = (Gen; Enc; Dec) that is EAV-secure according to the denition
+that has been discussed in class.
+(1) What does the condition jm0j = jm1j capture? Does it weaken or strengthen 's security?
+(2) Consider the notion of EAV2-security that we get if we remove the above condition jm0j = jm1j,
+that is, where in the corresponding security game the adversary A is allowed to choose challenge
+messages of arbitrary length for breaking an encryption scheme 0 = (Gen0; Enc0; Dec0) for arbitrary
+long massages. Intuitively, 0 is EAV2-secure, if no ecient A can determine cb non-negligibly
+better than guessing, even when jm0j 6= jm1j. Show that no EAV2-secure scheme 0 exists.
+Hint: First, note that 0 is dened over message space M = f0; 1g, i.e., messages of
+arbitrary length. Then, assume that polynomial p() is an upper bound on the time
+spent by Enc0 for encrypting a single bit, and consider what happens when A chooses
+m0 2 f0; 1g and a random m1 2 f0; 1gp(n)+c, where c  1 a positive integer.
+(3) Show that EAV2-security can be achieved by encryption schemes dened over messages up to
+a given maximum length, i.e., by schemes 0 such that for k 2 f0; 1gn, algorithm Enc0 is dened
+over message space M0 = fm : jmj  `g, where ` , `(n) for some given polynomial `().
+Hint: Construct a scheme 0 = (Gen0; Enc0; Dec0) that encrypts messages in M0 by
+employing a EAV-secure scheme  = (Gen; Enc; Dec) with message space M. Consider
+an algorithm Enc0 that on input message m0 2M0, merely applies Enc on a unique and
+inversible encoding m = E(m0) 2Mof m0 in a way that \compensates" for the absence
+of the restriction jm0j = jm1j in the original game used to dene EAV-security. Then,
+prove that 0 is EAV2-secure via a proof by reduction.
+3
